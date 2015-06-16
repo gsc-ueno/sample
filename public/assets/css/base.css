@@ -1,0 +1,57 @@
+html {
+  font-family: "Helvetica Neue",Helvetica,Arial,Roboto,"Droid Sans","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,"ＭＳ Ｐゴシック",sans-serif;
+}
+
+body{
+  background-color: #FDFDFD;
+  font-family: "Helvetica Neue",Helvetica,Arial,Roboto,"Droid Sans","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic ProN","メイリオ",Meiryo,"ＭＳ Ｐゴシック",sans-serif;
+}
+.page-header {
+  padding-bottom: 5px;
+  margin: 20px 0 15px;
+  border-bottom: 7px solid #428EB1;
+}
+
+.page-header h3{
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.page-header a{
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.panel {
+  background-color: #FDFDFD;
+  border: 1px solid #428EB1;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.panel-default>.panel-heading {
+  background-color: #6DA2C0;
+  color: #FFF;
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+  border-color: #FFD057;
+  background-color: #FFD057;
+  color: #FFF;
+}
+
+/** bootstrap huck **/
+.radio label {
+  margin-bottom: 5px;
+  padding-left: 0;
+}
+
+input[type="file"] {
+  background-color: #eee;
+  height : auto;
+}
+
+.table td {
+  word-break: break-all;
+}
