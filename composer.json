@@ -161,5 +161,9 @@
             "php oil r install"
         ]
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "codeception/aspect-mock": "*",
+        "phpunit/phpunit": "4.2.*"
+    }
 }

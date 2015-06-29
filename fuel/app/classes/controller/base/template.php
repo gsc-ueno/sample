@@ -14,14 +14,20 @@ class Controller_Base_Template extends Controller_Template
 	{
 		parent::before();
 
-		// current_userセット
-		$this->current_user = null;
-		if (Auth::check())
+		if(Request::active()->controller != 'Controller_Login')
 		{
-			$this->current_user = Model_User::find_by_username(Auth::get_screen_name());
-		}
+			$this->current_user = null;
+			if (Auth::check())
+			{
+				$this->current_user = Model_User::find_by_username(Auth::get_screen_name());
+			}
+			else
+			{
+				return Response::redirect('/login');
+			}
 
-		View::set_global('current_user', $this->current_user);
+			View::set_global('current_user', $this->current_user);
+		}
 	}
 
 	public function after($response)

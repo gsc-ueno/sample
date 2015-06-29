@@ -10,13 +10,16 @@
 	<?= Asset::js('jquery-1.11.2.min.js') ?>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<?= Asset::js('bootstrap.min.js') ?>
+	<?= Asset::js('moment.js') ?>
+	<?= Asset::js('bootstrap-datetimepicker.js') ?>
 	<!-- Bootstrap -->
 	<?= Asset::css('bootstrap.min.css') ?>
-	<!-- MP -->
-	<?= Asset::css('base.css') ?>
+	<?= Asset::css('bootstrap-datetimepicker.min.css') ?>
 
 	<!-- Lib -->
 	<?= Asset::css('sticky-footer-navbar.css') ?>
+
+	<?= Asset::css('base.css') ?>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
