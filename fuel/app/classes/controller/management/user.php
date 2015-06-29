@@ -187,40 +187,16 @@ class Controller_Management_User extends Controller_Base_Template
 		// ユーザが存在しない場合はエラー
 		if ( ! $user)
 		{
-			Session::set_flash('error_message', __('msg.user.delete.not_found'));
-
-			return Response::redirect('management/user/');
+			Session::set_flash('error_message', '対象のデータが見つかりませんでした。');
+			return Response::redirect('management/user');
 		}
 
-		try {
-			// トランザクション開始
-			DB::start_transaction();
+		$random = $this->_make_rand_mail();
+		$user->username = $random;
+		$user->email = $random;
+		$user->delete();
 
-			// メディアが存在した場合は先に削除(物理)
-			if ($user->panel)
-			{
-				$user->panel->delete();
-			}
-
-			$random = $this->_make_rand_mail();
-			$user->username = $random;
-			$user->email = $random;
-			$user->panel = null;
-			$user->delete();
-
-			// 登録成功
-			// トランザクションコミット
-			DB::commit_transaction();
-			Session::set_flash('info_message', __('msg.common.delete.complete'));
-		}
-		catch (Exception $e)
-		{
-			// トランザクションロールバック
-			DB::rollback_transaction();
-			Session::set_flash('error_message', __('msg.common.delete.failure'));
-		}
-
-		return Response::redirect('management/user/');
+		return Response::redirect('management/user');
 	}
 
 	/**
@@ -229,34 +205,13 @@ class Controller_Management_User extends Controller_Base_Template
 	 */
 	private function _make_rand_mail($length = 30)
 	{
-		$chars = Config::get('user.random.email.chars');
+		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789';
 		$user = '';
 		for ($i = 0; $i < $length; ++$i)
 		{
 			$user .= $chars[mt_rand(0, 61)];
 		}
 
-		return $user.Config::get('user.random.email.domain');
+		return $user.'@deleted.user';
 	}
-
-	private function _index_common()
-	{
-		// 検索用のフォームを生成
-		$form = Controller_Form_User::forge('management/user');
-		$form->for_find();
-		$form->validation()->run();
-
-		//検索条件をセット
-		$search_conditions = $this->set_list_search_conditions($form->to_model());
-		$search_order_by = $this->set_list_search_order_by($form->to_model());
-
-		$users = $this->_index($search_conditions, $search_order_by);
-
-		// ページを出力
-		$this->template->content = Presenter::forge('management/user/index')
-			->set('users', $users)
-			->set('search_order_by', $search_order_by);
-		$form->repopulate();
-	}
-
 }
